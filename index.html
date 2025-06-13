@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Humaid Khan – Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      perspective: 1200px;
+      scroll-behavior: smooth;
+    }
+
+    /* 2D Animated Background Layer */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .worker {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #111;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #00f0ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00f0ff;
+      font-size: 0.8rem;
+      animation: float 6s ease-in-out infinite;
+    }
+    .worker:nth-child(1) {
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    .worker:nth-child(2) {
+      top: 30%;
+      right: 10%;
+      animation-delay: 1.5s;
+    }
+    .worker:nth-child(3) {
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 3s;
+    }
+    .worker:nth-child(4) {
+      bottom: 15%;
+      right: 25%;
+      animation-delay: 4.5s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-20px) scale(1.05);
+      }
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #000000cc;
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #00f0ff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00f0ff;
+    }
+
+    .hire-btn {
+      background: #00f0ff;
+      color: #000;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px #00f0ff;
+    }
+    .hire-btn:hover {
+      transform: scale(1.05) rotateX(10deg);
+      box-shadow: 0 0 25px #00f0ff;
+    }
+
+    section {
+      padding: 6rem 2rem 4rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .about-box {
+      background: #111;
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid #00f0ff55;
+      transition: 0.6s ease;
+      box-shadow: 0 0 10px #00f0ff22;
+      cursor: pointer;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    .about-box:hover,
+    .about-box.active {
+      transform: translate3d(-20px, -40px, 20px) rotateX(15deg);
+      box-shadow: 0 0 30px #00f0ff66;
+    }
+    .about-box h2 {
+      color: #00f0ff;
+      margin-bottom: 1rem;
+    }
+
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .team-member {
+      background: #121212;
+      padding: 1rem;
+      border-radius: 15px;
+      width: 230px;
+      text-align: center;
+      border: 1px solid #00f0ff33;
+      box-shadow: 0 0 10px #00f0ff22;
+      transition: transform 0.5s ease;
+    }
+    .team-member:hover {
+      transform: rotateY(10deg) scale(1.03);
+      box-shadow: 0 0 20px #00f0ff88;
+    }
+    .team-member h3 {
+      color: #00f0ff;
+      margin-bottom: 0.3rem;
+    }
+    .team-member p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .contact-preview {
+      text-align: center;
+      margin-top: 4rem;
+    }
+    .contact-preview h2 {
+      color: #00f0ff;
+      margin-bottom: 1rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .contact-links a {
+      font-size: 1.1rem;
+      color: #00f0ff;
+      background: #111;
+      padding: 1rem 1.5rem;
+      border-radius: 30px;
+      box-shadow: 0 0 12px #00f0ff44;
+      transition: all 0.3s ease;
+    }
+    .contact-links a:hover {
+      transform: scale(1.1) rotateY(10deg);
+      box-shadow: 0 0 25px #00f0ff99;
+    }
+
+    @media (max-width: 768px) {
+      .team { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 2D Animated Team Background -->
+  <div class="animated-bg">
+    <div class="worker">👨‍💻 Coding</div>
+    <div class="worker">🧠 SEO</div>
+    <div class="worker">✍️ Writing</div>
+    <div class="worker">🛠️ Editing</div>
+  </div>
+
+  <header>
+    <div class="logo">Humaid Khan</div>
+    
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to Humaid Khan's Portfolio</h1>
+    <p>Crafting Tech-Driven Web Experiences</p>
+  </section>
+
+  <section>
+    <div class="about-box" id="aboutCard" onclick="toggleAbout()">
+      <h2>About Me</h2>
+      <p>I am a Full-Stack Developer skilled in immersive UI, scalable backend, and performance-driven web solutions.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="text-align:center; color:#00f0ff;">Team</h2>
+    <div class="team">
+      <div class="team-member"><h3>Sarah Ali</h3><p>SEO Manager — Boosting visibility</p></div>
+      <div class="team-member"><h3>Omar Rizwan</h3><p>Content Editor — Ensuring clarity</p></div>
+      <div class="team-member"><h3>Ayesha K</h3><p>Web Content — Organizing flow</p></div>
+      <div class="team-member"><h3>Zain Ahmed</h3><p>Writer — Powerful storytelling</p></div>
+    </div>
+  </section>
+
+  <section class="contact-preview">
+    <h2>Get in Touch</h2>
+    <div class="contact-links">
+      <a href="humaidedition@gmail.com">📧 Email Me</a>
+      <a href="https://wa.me/message/NALB7FYE63FLB1">📱 WhatsApp</a>
+    </div>
+  </section>
+
+  <script>
+    function goToContact() {
+      document.body.style.transition = 'transform 0.3s ease';
+      document.body.style.transform = 'scale(0.95) rotateX(10deg)';
+      setTimeout(() => {
+        window.location.href = 'contact.html';
+      }, 300);
+    }
+
+    function toggleAbout() {
+      document.getElementById('aboutCard').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
